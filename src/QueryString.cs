@@ -85,7 +85,7 @@ namespace QueryString
             }
             else if (token is JObject obj)
             {
-                SethObjectToken(obj, current, next, value, append);
+                SetObjectToken(obj, current, next, value, append);
             }
 
             if (indexes.Count > 0)
@@ -135,7 +135,7 @@ namespace QueryString
             }
         }
 
-        public static void SethObjectToken(JObject token, string current, string next, string value, bool append)
+        public static void SetObjectToken(JObject token, string current, string next, string value, bool append)
         {
 
             if (token[current] == null)

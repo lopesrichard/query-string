@@ -105,7 +105,7 @@ Console.WriteLine(JsonConvert.SerializeObject(parsed));
 #### 7. A more complex example
 
 ```csharp
-JObject parsed = QueryString.Parse("lorem[ipsum][2][dolor][3]=sit&lorem[ipsum][2][elit][]=adipiscing");
+JObject parsed = QueryString.Parse("lorem[ipsum][0][dolor][0]=sit&lorem[ipsum][0][elit][]=adipiscing");
 Console.WriteLine(JsonConvert.SerializeObject(parsed));
 ```
 

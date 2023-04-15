@@ -79,6 +79,19 @@ namespace QueryString.Test
         }
 
         [Test]
+        public void ParseQueryStringWithSequentialNumericIndexParameters()
+        {
+            var expected = new { lorem = new string[][] { new string[] { "ipsum" } } };
+
+            var parsed = QueryString.Parse("lorem[0][0]=ipsum");
+
+            Assert.AreEqual(
+                JsonSerializer.Serialize(expected),
+                JsonSerializer.Serialize(parsed)
+            );
+        }
+
+        [Test]
         public void ParseQueryStringWithMultipleNumericIndexParameters()
         {
             var expected = new { lorem = new string[] { "ipsum", "dolor" } };

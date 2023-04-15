@@ -34,7 +34,7 @@ namespace QueryString
                 }
 
                 var key = split.First();
-                var value = split.Skip(1).Join();
+                var value = string.Join("", split.Skip(1));
 
                 var match = Regex.Match(key, @"^(?<parameter>\w+)(?:\[(?<index>\w+)\])*(?<append>\[\])?$");
 

@@ -215,7 +215,7 @@ namespace QueryString.Test
                 "ipsum=amet"
             };
 
-            var parsed = QueryString.Parse(query.Join("&"));
+            var parsed = QueryString.Parse(string.Join("&", query));
 
             Assert.AreEqual(
               JsonSerializer.Serialize(expected),

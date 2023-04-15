@@ -1,5 +1,7 @@
 # QueryString
 
+Parse a html query component into a [JsonObject](https://learn.microsoft.com/en-us/dotnet/api/system.text.json.nodes.jsonobject)
+
 ## Usage
 
 ```csharp
@@ -12,7 +14,7 @@ JsonObject parsed = QueryString.Parse(query);
 
 ```csharp
 JsonObject parsed = QueryString.Parse("lorem=ipsum");
-Console.WriteLine(JsonConvert.SerializeObject(parsed));
+Console.WriteLine(JsonSerializer.Serialize(parsed));
 ```
 
 #### Output
@@ -27,7 +29,7 @@ Console.WriteLine(JsonConvert.SerializeObject(parsed));
 
 ```csharp
 JsonObject parsed = QueryString.Parse("?lorem=ipsum");
-Console.WriteLine(JsonConvert.SerializeObject(parsed));
+Console.WriteLine(JsonSerializer.Serialize(parsed));
 ```
 
 #### Output
@@ -42,7 +44,7 @@ Console.WriteLine(JsonConvert.SerializeObject(parsed));
 
 ```csharp
 JsonObject parsed = QueryString.Parse("lorem=ipsum&dolor=sit");
-Console.WriteLine(JsonConvert.SerializeObject(parsed));
+Console.WriteLine(JsonSerializer.Serialize(parsed));
 ```
 
 #### Output
@@ -58,7 +60,7 @@ Console.WriteLine(JsonConvert.SerializeObject(parsed));
 
 ```csharp
 JsonObject parsed = QueryString.Parse("lorem[]=ipsum&lorem[]=dolor");
-Console.WriteLine(JsonConvert.SerializeObject(parsed));
+Console.WriteLine(JsonSerializer.Serialize(parsed));
 ```
 
 #### Output
@@ -73,7 +75,7 @@ Console.WriteLine(JsonConvert.SerializeObject(parsed));
 
 ```csharp
 JsonObject parsed = QueryString.Parse("lorem[4]=ipsum&lorem[6]=dolor");
-Console.WriteLine(JsonConvert.SerializeObject(parsed));
+Console.WriteLine(JsonSerializer.Serialize(parsed));
 ```
 
 #### Output
@@ -88,7 +90,7 @@ Console.WriteLine(JsonConvert.SerializeObject(parsed));
 
 ```csharp
 JsonObject parsed = QueryString.Parse("lorem[ipsum]=dolor&lorem[amet]=consectetur");
-Console.WriteLine(JsonConvert.SerializeObject(parsed));
+Console.WriteLine(JsonSerializer.Serialize(parsed));
 ```
 
 #### Output
@@ -106,7 +108,7 @@ Console.WriteLine(JsonConvert.SerializeObject(parsed));
 
 ```csharp
 JsonObject parsed = QueryString.Parse("lorem[ipsum][0][dolor][0]=sit&lorem[ipsum][0][elit][]=adipiscing");
-Console.WriteLine(JsonConvert.SerializeObject(parsed));
+Console.WriteLine(JsonSerializer.Serialize(parsed));
 ```
 
 #### Output

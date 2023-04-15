@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using NUnit.Framework;
@@ -43,6 +44,12 @@ namespace QueryString.Test
                 JsonSerializer.Serialize(expected),
                 JsonSerializer.Serialize(parsed)
             );
+        }
+
+        [Test]
+        public void ParseQueryStringInvalidParamNameShouldThrowArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => QueryString.Parse("!@#$%=dolor"));
         }
 
         [Test]

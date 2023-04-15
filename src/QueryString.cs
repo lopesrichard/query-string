@@ -1,15 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Dynamic;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
-using System.Security.Principal;
+using System.Text.Json.Nodes;
 using System.Text.RegularExpressions;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace QueryString
 {
@@ -20,7 +13,7 @@ namespace QueryString
 
     public static class QueryString
     {
-        public static JObject Parse(string query, ParseOptions options = null)
+        public static JsonObject Parse(string query, ParseOptions options = null)
         {
             if (options == null)
             {
@@ -29,7 +22,7 @@ namespace QueryString
 
             query = query.Trim().TrimStart('?');
 
-            var obj = new JObject();
+            var obj = new JsonObject();
 
             foreach (var results in query.Split('&'))
             {
@@ -69,7 +62,7 @@ namespace QueryString
             return obj;
         }
 
-        private static void Set(JToken token, Queue<string> indexes, bool append, string value)
+        private static void Set(JsonNode token, Queue<string> indexes, bool append, string value)
         {
             string current = indexes.Dequeue();
             string next = null;
@@ -79,11 +72,11 @@ namespace QueryString
                 next = indexes.Peek();
             }
 
-            if (token is JArray arr)
+            if (token is JsonArray arr)
             {
                 SetArrayToken(arr, current, next, value);
             }
-            else if (token is JObject obj)
+            else if (token is JsonObject obj)
             {
                 SetObjectToken(obj, current, next, value, append);
             }
@@ -101,7 +94,7 @@ namespace QueryString
             }
         }
 
-        public static void SetArrayToken(JArray token, string current, string next, string value)
+        public static void SetArrayToken(JsonArray token, string current, string next, string value)
         {
             if (!int.TryParse(current, out var index))
             {
@@ -113,7 +106,7 @@ namespace QueryString
                 token.Add(null);
             }
 
-            if (token[index].HasValues)
+            if (token[index] != null)
             {
                 return;
             }
@@ -127,15 +120,15 @@ namespace QueryString
 
             if (int.TryParse(next, out var integer))
             {
-                token[index] = new JArray();
+                token[index] = new JsonArray();
             }
             else
             {
-                token[index] = new JObject();
+                token[index] = new JsonObject();
             }
         }
 
-        public static void SetObjectToken(JObject token, string current, string next, string value, bool append)
+        public static void SetObjectToken(JsonObject token, string current, string next, string value, bool append)
         {
 
             if (token[current] == null)
@@ -148,7 +141,7 @@ namespace QueryString
                     }
                     else
                     {
-                        token[current] = new JArray();
+                        token[current] = new JsonArray();
                     }
                 }
                 else
@@ -157,7 +150,7 @@ namespace QueryString
                     {
                         if (append)
                         {
-                            token[current] = new JArray(value);
+                            token[current] = new JsonArray(value);
                         }
                         else
                         {
@@ -166,11 +159,11 @@ namespace QueryString
                     }
                     else
                     {
-                        token[current] = new JObject();
+                        token[current] = new JsonObject();
                     }
                 }
             }
-            else if (token[current] is JArray array && next == null && append)
+            else if (token[current] is JsonArray array && next == null && append)
             {
                 array.Add(value);
             }

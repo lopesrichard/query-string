@@ -1,8 +1,5 @@
-using System;
 using System.Collections.Generic;
-using System.Threading;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+using System.Text.Json;
 using NUnit.Framework;
 
 namespace QueryString.Test
@@ -17,8 +14,8 @@ namespace QueryString.Test
             var parsed = QueryString.Parse("lorem=ipsum");
 
             Assert.AreEqual(
-                JsonConvert.SerializeObject(expected),
-                JsonConvert.SerializeObject(parsed)
+                JsonSerializer.Serialize(expected),
+                JsonSerializer.Serialize(parsed)
             );
         }
 
@@ -30,8 +27,8 @@ namespace QueryString.Test
             var parsed = QueryString.Parse("?lorem=ipsum");
 
             Assert.AreEqual(
-                JsonConvert.SerializeObject(expected),
-                JsonConvert.SerializeObject(parsed)
+                JsonSerializer.Serialize(expected),
+                JsonSerializer.Serialize(parsed)
             );
         }
 
@@ -43,8 +40,8 @@ namespace QueryString.Test
             var parsed = QueryString.Parse("lorem=ipsum&dolor=sit");
 
             Assert.AreEqual(
-                JsonConvert.SerializeObject(expected),
-                JsonConvert.SerializeObject(parsed)
+                JsonSerializer.Serialize(expected),
+                JsonSerializer.Serialize(parsed)
             );
         }
 
@@ -56,8 +53,8 @@ namespace QueryString.Test
             var parsed = QueryString.Parse("lorem[0]=ipsum");
 
             Assert.AreEqual(
-                JsonConvert.SerializeObject(expected),
-                JsonConvert.SerializeObject(parsed)
+                JsonSerializer.Serialize(expected),
+                JsonSerializer.Serialize(parsed)
             );
         }
 
@@ -69,8 +66,8 @@ namespace QueryString.Test
             var parsed = QueryString.Parse("lorem[0]=ipsum&lorem[1]=dolor");
 
             Assert.AreEqual(
-                JsonConvert.SerializeObject(expected),
-                JsonConvert.SerializeObject(parsed)
+                JsonSerializer.Serialize(expected),
+                JsonSerializer.Serialize(parsed)
             );
         }
 
@@ -82,8 +79,8 @@ namespace QueryString.Test
             var parsed = QueryString.Parse("lorem[8]=ipsum&lorem[4]=dolor");
 
             Assert.AreEqual(
-                JsonConvert.SerializeObject(expected),
-                JsonConvert.SerializeObject(parsed)
+                JsonSerializer.Serialize(expected),
+                JsonSerializer.Serialize(parsed)
             );
         }
 
@@ -95,8 +92,8 @@ namespace QueryString.Test
             var parsed = QueryString.Parse("lorem[]=ipsum");
 
             Assert.AreEqual(
-                JsonConvert.SerializeObject(expected),
-                JsonConvert.SerializeObject(parsed)
+                JsonSerializer.Serialize(expected),
+                JsonSerializer.Serialize(parsed)
             );
         }
 
@@ -108,8 +105,8 @@ namespace QueryString.Test
             var parsed = QueryString.Parse("lorem[]=ipsum&lorem[]=dolor");
 
             Assert.AreEqual(
-                JsonConvert.SerializeObject(expected),
-                JsonConvert.SerializeObject(parsed)
+                JsonSerializer.Serialize(expected),
+                JsonSerializer.Serialize(parsed)
             );
         }
 
@@ -125,8 +122,8 @@ namespace QueryString.Test
             var parsed = QueryString.Parse("lorem[3]=ipsum&lorem[]=dolor&lorem[1]=amet&consectetur[]=adipiscing");
 
             Assert.AreEqual(
-                JsonConvert.SerializeObject(expected),
-                JsonConvert.SerializeObject(parsed)
+                JsonSerializer.Serialize(expected),
+                JsonSerializer.Serialize(parsed)
             );
         }
 
@@ -138,8 +135,8 @@ namespace QueryString.Test
             var parsed = QueryString.Parse("lorem[ipsum]=dolor");
 
             Assert.AreEqual(
-                JsonConvert.SerializeObject(expected),
-                JsonConvert.SerializeObject(parsed)
+                JsonSerializer.Serialize(expected),
+                JsonSerializer.Serialize(parsed)
             );
         }
 
@@ -188,8 +185,8 @@ namespace QueryString.Test
             var parsed = QueryString.Parse(query.Join("&"));
 
             Assert.AreEqual(
-              JsonConvert.SerializeObject(expected),
-              JsonConvert.SerializeObject(parsed)
+              JsonSerializer.Serialize(expected),
+              JsonSerializer.Serialize(parsed)
           );
         }
     }

@@ -33,6 +33,19 @@ namespace QueryString.Test
         }
 
         [Test]
+        public void ParseQueryStringIgnoreParamsWithoutAssignmentExpression()
+        {
+            var expected = new { ipsum = "dolor" };
+
+            var parsed = QueryString.Parse("lorem&ipsum=dolor");
+
+            Assert.AreEqual(
+                JsonSerializer.Serialize(expected),
+                JsonSerializer.Serialize(parsed)
+            );
+        }
+
+        [Test]
         public void ParseQueryStringWithMultipleParameters()
         {
             var expected = new { lorem = "ipsum", dolor = "sit" };

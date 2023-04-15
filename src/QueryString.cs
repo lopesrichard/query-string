@@ -96,10 +96,7 @@ namespace QueryString
 
         public static void SetArrayToken(JsonArray token, string current, string next, string value)
         {
-            if (!int.TryParse(current, out var index))
-            {
-                throw new ArgumentException("Attempt to set named index in array");
-            }
+            var index = int.Parse(current);
 
             for (var i = token.Count; i <= index; i++)
             {

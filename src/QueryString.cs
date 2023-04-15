@@ -132,14 +132,7 @@ namespace QueryString
             {
                 if (int.TryParse(next, out var integer))
                 {
-                    if (next == null)
-                    {
-                        token[current] = value;
-                    }
-                    else
-                    {
-                        token[current] = new JsonArray();
-                    }
+                    token[current] = new JsonArray();
                 }
                 else
                 {

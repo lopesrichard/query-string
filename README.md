@@ -3,7 +3,7 @@
 ## Usage
 
 ```csharp
-JObject parsed = QueryString.Parse(query);
+JsonObject parsed = QueryString.Parse(query);
 ```
 
 ### Examples
@@ -11,7 +11,7 @@ JObject parsed = QueryString.Parse(query);
 #### 1. Single parameter
 
 ```csharp
-JObject parsed = QueryString.Parse("lorem=ipsum");
+JsonObject parsed = QueryString.Parse("lorem=ipsum");
 Console.WriteLine(JsonConvert.SerializeObject(parsed));
 ```
 
@@ -26,7 +26,7 @@ Console.WriteLine(JsonConvert.SerializeObject(parsed));
 #### 2. Beginning with question mark
 
 ```csharp
-JObject parsed = QueryString.Parse("?lorem=ipsum");
+JsonObject parsed = QueryString.Parse("?lorem=ipsum");
 Console.WriteLine(JsonConvert.SerializeObject(parsed));
 ```
 
@@ -41,7 +41,7 @@ Console.WriteLine(JsonConvert.SerializeObject(parsed));
 #### 3. Multiple parameters
 
 ```csharp
-JObject parsed = QueryString.Parse("lorem=ipsum&dolor=sit");
+JsonObject parsed = QueryString.Parse("lorem=ipsum&dolor=sit");
 Console.WriteLine(JsonConvert.SerializeObject(parsed));
 ```
 
@@ -57,7 +57,7 @@ Console.WriteLine(JsonConvert.SerializeObject(parsed));
 #### 4. Array parameter
 
 ```csharp
-JObject parsed = QueryString.Parse("lorem[]=ipsum&lorem[]=dolor");
+JsonObject parsed = QueryString.Parse("lorem[]=ipsum&lorem[]=dolor");
 Console.WriteLine(JsonConvert.SerializeObject(parsed));
 ```
 
@@ -72,7 +72,7 @@ Console.WriteLine(JsonConvert.SerializeObject(parsed));
 #### 5. Array parameter with numeric index
 
 ```csharp
-JObject parsed = QueryString.Parse("lorem[4]=ipsum&lorem[6]=dolor");
+JsonObject parsed = QueryString.Parse("lorem[4]=ipsum&lorem[6]=dolor");
 Console.WriteLine(JsonConvert.SerializeObject(parsed));
 ```
 
@@ -87,7 +87,7 @@ Console.WriteLine(JsonConvert.SerializeObject(parsed));
 #### 6. Object parameter
 
 ```csharp
-JObject parsed = QueryString.Parse("lorem[ipsum]=dolor&lorem[amet]=consectetur");
+JsonObject parsed = QueryString.Parse("lorem[ipsum]=dolor&lorem[amet]=consectetur");
 Console.WriteLine(JsonConvert.SerializeObject(parsed));
 ```
 
@@ -105,7 +105,7 @@ Console.WriteLine(JsonConvert.SerializeObject(parsed));
 #### 7. A more complex example
 
 ```csharp
-JObject parsed = QueryString.Parse("lorem[ipsum][0][dolor][0]=sit&lorem[ipsum][0][elit][]=adipiscing");
+JsonObject parsed = QueryString.Parse("lorem[ipsum][0][dolor][0]=sit&lorem[ipsum][0][elit][]=adipiscing");
 Console.WriteLine(JsonConvert.SerializeObject(parsed));
 ```
 
